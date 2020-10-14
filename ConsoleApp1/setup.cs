@@ -77,7 +77,7 @@ namespace SetUp
             }
         }
       
-        [OneTimeSetUp]
+        [SetUp]
         public void Driver()
         {
             var htmlReporter = new ExtentHtmlReporter(@"C:\Users\Rainbow\source\repos\ConsoleApp1\ConsoleApp1\repots\report.html");
@@ -110,12 +110,12 @@ namespace SetUp
         //Check(test, driver, , "", "not found");
         //Element_check(test, driver,,""," not found");
 
-        [OneTimeTearDown]
+        [TearDown]
         public void Close()
         {
             extent.Flush();
-            driver.Close();
-            driver.Quit();
+            
+            //driver.Quit();
         }
     }
 }

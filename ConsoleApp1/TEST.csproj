@@ -442,6 +442,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="dummy.cs" />
     <Compile Include="setup.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

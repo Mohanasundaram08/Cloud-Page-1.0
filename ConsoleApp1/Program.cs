@@ -10,18 +10,20 @@ using OpenQA.Selenium;
 using OpenQA.Selenium.Chrome;
 using OpenQA.Selenium.Interactions;
 using SetUp;
+using Demo;
+using System.Reflection.Metadata.Ecma335;
+using Microsoft.CodeAnalysis.CSharp.Syntax;
 
 namespace CloudPages
 {
     public class Pages : Setup
     {
-        
         [Test, Order(0)]
         public void Dashboard()
         {
             driver.Manage().Timeouts().ImplicitWait = TimeSpan.FromSeconds(200);
             test = extent.CreateTest("Dashboard");
-            Thread.Sleep(20000);
+            Thread.Sleep(50000);
 
             //Sites           
             Check(test, driver, "//div[@id='root_pagemashupcontainer-69_ptcslabel-15-bounding-box']/ptcs-label", "Sites", "Sites not found");
@@ -382,7 +384,8 @@ namespace CloudPages
                 if (driver.FindElement(By.XPath(Events)).Displayed)
                 {
                     driver.FindElement(By.XPath(Events)).Click();
-                    driver.Manage().Timeouts().ImplicitWait = TimeSpan.FromSeconds(200);
+                   
+                    Thread.Sleep(50000);
                     test.Log(Status.Info, "Event Parameters");
                     //Machine name
                     Check(test, driver, "//*[@id='root_pagemashupcontainer-69_mashupcontainer-9_gridadvanced-9-grid-advanced']/div[1]/table/tbody/tr[2]/td[1]/div", "Machine name", "Machine name not found");
@@ -507,7 +510,7 @@ namespace CloudPages
                     //File
                     Check(test, driver, "//span[@id='column_download']", "File", "File not found");
                     //Text
-                    Check(test, driver, "//div[contains(text(),'Are you having trouble downloading and upgrading? Contact our support on 1-800-3722-123 or visit ']", "Contact Support Text found", " Contact Support Text not found");
+                    //Check(test, driver, "//div[contains(text(),'Are you having trouble downloading and upgrading? Contact our support on 1-800-3722-123 or visit ']", "Contact Support Text found", " Contact Support Text not found");
                     //Text Link
                     Element_check(test, driver, "//*[@id='root_pagemashupcontainer-69_mashupcontainer-40_mashupcontainer-7_htmltextarea-12']/a", "Contact Support Link", "Contact Support Link not found");
 
@@ -553,28 +556,31 @@ namespace CloudPages
         [Test, Order(4)]
         public void JobManagement()
         {
-            /*   test = extent.CreateTest("Job Management");
-               Click(driver, driver.FindElement(By.XPath("//*[@id='root_menu-40']/li[5]/table/tbody/tr/td/a/span")));
-               //driver.Manage().Timeouts().ImplicitWait = TimeSpan.FromSeconds(200);
-               Thread.Sleep(200000);
-
-               //Job management Heading
-               Check(test, driver,"//*[@id='job_main']/section/div[1]/h2", "Job management", "Job management Heading not found");
-               //Search Box
-               Element_check(test, driver,"//*[@id='input-43']", "Search Box", "Search Box not found");
-               //Jobs Heading
-               Check(test, driver,"//*[@id='job_main']/section/div[2]/div/h2", "Jobs", "Jobs Heading not found");
-               //Machines & Stations
-               Element_check(test, driver,"//*[@id='treeview']/div[2]/div/div[1]/div", "Machines & Stations", "Machines & Stations not found");
-               //ESAB Node
-               Element_check(test, driver,"//*[@id='treeview']/div[2]/div/div[2]/div/div/div[2]", "ESAB Node", "ESAB Node not found");
-               //Refresh Icon
-               Element_check(test, driver,"//*[@id='jobs_tree']/div[3]/button", "Refresh Icon", "Refresh Icon not found");
-               //Machine Image
-               Element_check(test, driver,"//*[@id='job_main']/section/div[2]/div/div/img", "Machine Image", "Machine Image not found");
-               //Page Text
-               Check(test, driver,"//*[@id='job_main']/section/div[2]/div/div/p", "Select a machine from the tree view on the left side...", "Page Text not found"); 
-               */
+          
+    /*     test = extent.CreateTest("Job Management");
+           Click(driver, driver.FindElement(By.XPath("//*[@id='root_menu-40']/li[5]/table/tbody/tr/td/a/span")));
+           
+           string currentTab = driver.CurrentWindowHandle;
+           Thread.Sleep(100000);
+           driver.SwitchTo().Window(currentTab);
+           
+            //Job management Heading
+            Check(test, driver,"", "Job management", "Job management Heading not found");
+            //Search Box
+            Element_check(test, driver,"//*[@id='input-43']", "Search Box", "Search Box not found");
+            //Jobs Heading
+            Check(test, driver,"//div[@id='job_main']/section/div/h2", "Jobs", "Jobs Heading not found");
+            //Machines & Stations
+            Element_check(test, driver,"//*[@id='treeview']/div[2]/div/div[1]/div", "Machines & Stations", "Machines & Stations not found");
+            //ESAB Node
+            Element_check(test, driver,"//*[@id='treeview']/div[2]/div/div[2]/div/div/div[2]", "ESAB Node", "ESAB Node not found");
+            //Refresh Icon
+            Element_check(test, driver,"//*[@id='jobs_tree']/div[3]/button", "Refresh Icon", "Refresh Icon not found");
+            //Machine Image
+            Element_check(test, driver,"//*[@id='job_main']/section/div[2]/div/div/img", "Machine Image", "Machine Image not found");
+            //Page Text
+            Check(test, driver,"//*[@id='job_main']/section/div[2]/div/div/p", "Select a machine from the tree view on the left side...", "Page Text not found"); 
+                   */
         }
 
         [Test, Order(5)]
@@ -636,7 +642,7 @@ namespace CloudPages
             Check(test, driver, "//*[@id='root_pagemashupcontainer-69_mashupcontainer-38_valuedisplay-248']/div/table/tbody/tr/td/div", "Show", "Show Text not found");
 
         }
-
+         
         [Test, Order(6)]
         public void UserManagement()
         {
@@ -879,20 +885,18 @@ namespace CloudPages
                     //Alerts Heading
                     Check(test, driver, "//*[@id='root_pagemashupcontainer-69_mashupcontainer-237_valuedisplay-30']/div/table/tbody/tr/td/div", "Alerts", "Alerts Heading not found");
                     //Name               
-                    Check(test, driver, "//div[@id='esabvueadvancedtable-a80f9b594fd1442187ffb972ed815dd0']/div/div/div/div/table/thead/tr/th/span", "Name", "Name not found");
+                    Check(test, driver, "//span[contains(text(),'Name')]", "Name", "Name not found");
                     //Alert category
-                    Check(test, driver, "//div[@id='esabvueadvancedtable-5bb963bde6d845faa225bb88c66b8758']/div/div/div/div/table/thead/tr/th[2]/span", "Alert category", "Alert category not found");
+                    Check(test, driver, "//span[contains(text(),'Alert category')]", "Alert category", "Alert category not found");
                     //Way of contact
-                    Check(test, driver, "//div[@id='esabvueadvancedtable-5bb963bde6d845faa225bb88c66b8758']/div/div/div/div/table/thead/tr/th[3]/span", "Way of contact", "Way of contact not found");
-                    //Rows per page:
-                    Check(test, driver, "//*[@id='esabvueadvancedtable-782ec06f12d44306826062254db9ef15']/div/div/div[1]/div[2]/div[1]", "Rows per page:", "Rows per page: not found");
-
+                    Check(test, driver, "//span[contains(text(),'Way of contact')]", "Way of contact", "Way of contact not found");
+                   
                     //Subscriptions Heading
-                    Check(test, driver, "//*[@id='root_pagemashupcontainer-69_mashupcontainer-237_valuedisplay-33']/div/table/tbody/tr/td/div", "Subscriptions", "Subscriptions Heading not found");
+                    Check(test, driver, "(//div[@class='novalue-container'])[30]", "Subscriptions", "Subscriptions Heading not found");
                     //Selected rows: 0
-                    Check(test, driver, "//*[@id='esabvueadvancedtable-782ec06f12d44306826062254db9ef15']/div/div/div[1]/span", "Selected rows: 0", "Selected rows: 0 not found");
+                    Check(test, driver, "(//span[@class='advancedtable-selectedrowscount'])[1]", "Selected rows: 0", "Selected rows: 0 not found");
                     //Create Button
-                    Element_check(test, driver, "//*[@id='root_pagemashupcontainer-69_mashupcontainer-237_button-92']/button", "Create Button", "Create Button not found");
+                    Element_check(test, driver, "(//button[@class='button-element textsize-large'])[3]", "Create Button", "Create Button not found");
 
                 }
             }
@@ -900,7 +904,7 @@ namespace CloudPages
             AlertsAndSubscriptions_paramters();
             NewAlert_parameters();
             New_subscription_parameters();
-            // Current_alerts_and_subscriptions_parameters(); 
+            Current_alerts_and_subscriptions_parameters(); 
 
         }
 
@@ -965,48 +969,316 @@ namespace CloudPages
         [Test, Order(11)]
         public void Administration()
         {
+            Thread.Sleep(2000);
+
             test = extent.CreateTest("Administration");
 
             Click(driver, driver.FindElement(By.XPath("//*[@id='root_menu-40']/li[12]/table/tbody/tr/td/a/span")));
             driver.Manage().Timeouts().ImplicitWait = TimeSpan.FromSeconds(200);
 
-            //Adminstration Icon
-            Element_check(test, driver, "//*[@id='root_pagemashupcontainer-69_mashupcontainer-73_valuedisplay-40']/div/table/tbody/tr/td[2]/img", "Adminstration Icon", "Adminstration Icon not found");
-            //Administration Heading
-            Check(test, driver, "//*[@id='root_pagemashupcontainer-69_mashupcontainer-73_valuedisplay-36']/div/table/tbody/tr/td/div", "Administration", "Administration Heading not found");
-            //Organization structure Heading
-            Check(test, driver, "//*[@id='root_pagemashupcontainer-69_mashupcontainer-73_valuedisplay-56']/div/table/tbody/tr/td/div", "Organization structure", "Organization structure Heading not found");
-            //Organization structure Text
-            Check(test, driver, "//*[@id='root_pagemashupcontainer-69_mashupcontainer-73_valuedisplay-219']/div/table/tbody/tr/td/div", "Click on items in the tree to filter the list.", "Organization structure Text not found");
-            //Customers Heading
-            Check(test, driver, "//*[@id='root_pagemashupcontainer-69_mashupcontainer-73_valuedisplay-299']/div/table/tbody/tr/td/div", "Customers", "Customers Heading not found");
-            //Customers Text
-            Check(test, driver, "//*[@id='root_pagemashupcontainer-69_mashupcontainer-73_valuedisplay-301']/div/table/tbody/tr/td/div", "The shown assets are based on the marked level in the tree structure.", "Customers Text not found");
-            //Help Menu
-            Check(test, driver, "//*[@id='root_pagemashupcontainer-69_mashupcontainer-73_button-324']/button/span[3]", "Help", "Help Menu not found");
-            //Search Box
-            Element_check(test, driver, "//*[@id='root_pagemashupcontainer-69_mashupcontainer-73_textbox-311']/table/tbody/tr/td/input", "Search Box", "Search Box not found");
-            //Search Icon
-            Element_check(test, driver, "//*[@id='root_pagemashupcontainer-69_mashupcontainer-73_button-313']/button", "Search Icon", "Search Icon not found");
-            //Create Customer Button
-            Element_check(test, driver, "//*[@id='root_pagemashupcontainer-69_mashupcontainer-73_button-319']/button", "Create Customer Button", "Create Customer Button not found");
-            //ESAB Node
-            Element_check(test, driver, "//*[@id='root_pagemashupcontainer-69_mashupcontainer-73_tree-1']/div/table/tbody/tr[2]/td[2]/table/tbody/tr[1]", "ESAB Node", "ESAB Node not found");
-            //Refresh Icon
-            Element_check(test, driver, "//*[@id='root_pagemashupcontainer-69_mashupcontainer-73_button-362']/button", "Refresh Icon", "Refresh Icon not found");
-            //Create Node Button
-            Element_check(test, driver, "//*[@id='root_pagemashupcontainer-69_mashupcontainer-73_button-231']/button", "Create Node Button", "Create Node Button not found");
-            //Delete Button
-            Element_check(test, driver, "//*[@id='root_pagemashupcontainer-69_mashupcontainer-73_button-180']/button", "Delete Button", "Delete Button not found");
-            //Customer name
-            Check(test, driver, "//*[@id='root_pagemashupcontainer-69_mashupcontainer-73_valuedisplay-145']/div/table/tbody/tr/td/div", "Customer name", "Customer name not found");
-            //Location/site
-            Check(test, driver, "//*[@id='root_pagemashupcontainer-69_mashupcontainer-73_valuedisplay-147']/div/table/tbody/tr/td/div", "Location/site", "Location/site not found");
+            string Delete_button = "//*[@id='root_pagemashupcontainer-69_mashupcontainer-73_button-180']/button";
+            string CreateNode_button = "//*[@id='root_pagemashupcontainer-69_mashupcontainer-73_button-231']/button";
+            
+            string EditNode_button = "(//button[@class='button-element textsize-xlarge'])[4]";
+            string Inital_node_path = "//span[contains(text(),'AutomationTest')]";
+            string Edited_node_path = "//span[contains(text(),'AutomationTest1')]";
+            string Edited_NestedNode_path = "//span[contains(text(),'NestedNode(Edited)')]";
+            string Inital_name = "AutomationTest";
+            string Edited_name = "AutomationTest1";
 
+            void Default_parameters()
+            {
+                //Adminstration Icon
+                Element_check(test, driver, "//*[@id='root_pagemashupcontainer-69_mashupcontainer-73_valuedisplay-40']/div/table/tbody/tr/td[2]/img", "Adminstration Icon", "Adminstration Icon not found");
+                //Administration Heading
+                Check(test, driver, "//*[@id='root_pagemashupcontainer-69_mashupcontainer-73_valuedisplay-36']/div/table/tbody/tr/td/div", "Administration", "Administration Heading not found");
+                //Organization structure Heading
+                Check(test, driver, "//*[@id='root_pagemashupcontainer-69_mashupcontainer-73_valuedisplay-56']/div/table/tbody/tr/td/div", "Organization structure", "Organization structure Heading not found");
+                //Organization structure Text
+                Check(test, driver, "//*[@id='root_pagemashupcontainer-69_mashupcontainer-73_valuedisplay-219']/div/table/tbody/tr/td/div", "Click on items in the tree to filter the list.", "Organization structure Text not found");
+                //Customers Heading
+                Check(test, driver, "//*[@id='root_pagemashupcontainer-69_mashupcontainer-73_valuedisplay-299']/div/table/tbody/tr/td/div", "Customers", "Customers Heading not found");
+                //Customers Text
+                Check(test, driver, "//*[@id='root_pagemashupcontainer-69_mashupcontainer-73_valuedisplay-301']/div/table/tbody/tr/td/div", "The shown assets are based on the marked level in the tree structure.", "Customers Text not found");
+                //Help Menu
+                Check(test, driver, "//*[@id='root_pagemashupcontainer-69_mashupcontainer-73_button-324']/button/span[3]", "Help", "Help Menu not found");
+                //Search Box
+                Element_check(test, driver, "//*[@id='root_pagemashupcontainer-69_mashupcontainer-73_textbox-311']/table/tbody/tr/td/input", "Search Box", "Search Box not found");
+                //Search Icon
+                Element_check(test, driver, "//*[@id='root_pagemashupcontainer-69_mashupcontainer-73_button-313']/button", "Search Icon", "Search Icon not found");
+                //Create Customer Button
+                Element_check(test, driver, "//*[@id='root_pagemashupcontainer-69_mashupcontainer-73_button-319']/button", "Create Customer Button", "Create Customer Button not found");
+                //ESAB Node
+                Element_check(test, driver, "//*[@id='root_pagemashupcontainer-69_mashupcontainer-73_tree-1']/div/table/tbody/tr[2]/td[2]/table/tbody/tr[1]", "ESAB Node", "ESAB Node not found");
+                //Refresh Icon
+                Element_check(test, driver, "//*[@id='root_pagemashupcontainer-69_mashupcontainer-73_button-362']/button", "Refresh Icon", "Refresh Icon not found");
+                //Create Node Button
+                Element_check(test, driver, CreateNode_button, "Create Node Button", "Create Node Button not found");
+                //Delete Button
+                Element_check(test, driver, Delete_button, "Delete Button", "Delete Button not found");
+                //Customer name
+                Check(test, driver, "//*[@id='root_pagemashupcontainer-69_mashupcontainer-73_valuedisplay-145']/div/table/tbody/tr/td/div", "Customer name", "Customer name not found");
+                //Location/site
+                Check(test, driver, "//*[@id='root_pagemashupcontainer-69_mashupcontainer-73_valuedisplay-147']/div/table/tbody/tr/td/div", "Location/site", "Location/site not found");
+            }
+
+            void Create_Node(string name, string path)
+            {
+                test.Log(Status.Info, "Creating node - "+name);
+                try
+                {
+                    Click(driver, driver.FindElement(By.XPath(CreateNode_button)));
+                    //Node name field
+                    driver.FindElement(By.XPath("//*[@id='root_pagemashupcontainer-69_mashupcontainer-73_navigationTooltip-230-popup_textbox-229']/table/tbody/tr/td/input")).Clear();
+                    driver.FindElement(By.XPath("//*[@id='root_pagemashupcontainer-69_mashupcontainer-73_navigationTooltip-230-popup_textbox-229']/table/tbody/tr/td/input")).SendKeys(name);
+                    Thread.Sleep(2000);
+                    driver.FindElement(By.XPath("//div[contains(text(),'Create node')]")).Click();
+                    Thread.Sleep(10000);
+                    //create Button
+                    driver.FindElement(By.XPath("(//button[@class='button-element textsize-large'])[4]")).Click();
+                       
+                    Thread.Sleep(10000);
+                        
+                    if (Creation_Check(name,path))
+                    {
+                        test.Log(Status.Pass, name+" - Node Created");
+                    }
+                    else
+                    {
+                        test.Log(Status.Fail, name+" - Node Not Created");
+                    } 
+                }
+                catch (Exception e )
+                    {
+                        test.Log(Status.Fail, name + " - Node Not Created " + e );
+                    }
+                    
+            }
+          
+            void Edit_node(string name ,string path, string Modifying_path)
+            {
+                IWebElement element = driver.FindElement(By.XPath(Modifying_path));
+                test.Log(Status.Info, "Editing Node - " + element.Text);
+
+                if (element.Displayed)
+                {
+                    try
+                    {
+                        element.Click();
+                        driver.FindElement(By.XPath(EditNode_button)).Click();
+
+                        driver.FindElement(By.XPath("//*[@id='root_pagemashupcontainer-69_mashupcontainer-73_navigationTooltip-221-popup_textbox-229']/table/tbody/tr/td/input")).Clear();
+                        driver.FindElement(By.XPath("//*[@id='root_pagemashupcontainer-69_mashupcontainer-73_navigationTooltip-221-popup_textbox-229']/table/tbody/tr/td/input")).SendKeys(name);
+                        driver.FindElement(By.XPath("//div[contains(text(),'Edit node')]")).Click();
+                        Thread.Sleep(2000);
+                        driver.FindElement(By.XPath("//*[@id='root_pagemashupcontainer-69_mashupcontainer-73_navigationTooltip-221-popup_button-15']/button")).Click();
+                        Thread.Sleep(2000);
+                        driver.FindElement(By.XPath("//*[@id='confirmButtons']/a[1]")).Click();
+                        Thread.Sleep(2000);
+
+                        if (Creation_Check(name,path))
+                        {
+                            test.Log(Status.Pass, name+" - Node Edited");
+                        }
+                        else
+                        {
+                            test.Log(Status.Fail, name+" - Node Editing Failed");
+                        } 
+                    }
+                    catch (Exception e)
+                    {
+                        test.Log(Status.Fail, name + " - Node Editing Failed " +e);
+                    }
+
+                }
+            }
+
+            void Nested_node()
+            {
+                driver.FindElement(By.XPath(Edited_node_path)).Click();
+                
+                for (int i = 0; i < 2; i++) 
+                {             
+                    string name = "NestedNode"+i;
+                    
+                    Create_Node(name,"//span[contains(text(),'" +name+ "')]" );
+                }
+
+            }
+
+            void Create_Customer(string name ,string path, string Creation_path)
+            {
+                try
+                {
+                    test.Log(Status.Info, "Creating Customer - " + name);
+
+                    driver.FindElement(By.XPath(path)).Click();
+
+                    //create customer button
+                    driver.FindElement(By.XPath("//*[@id='root_pagemashupcontainer-69_mashupcontainer-73_button-319']/button")).Click();
+
+                    IWebElement Create_customer_Field = driver.FindElement(By.XPath("(//input[@class='widget-textbox-box textsize-normal left'])[2]"));
+                    Create_customer_Field.Clear();
+                    Create_customer_Field.SendKeys(name);
+
+                    Thread.Sleep(2000);
+                    driver.FindElement(By.XPath("//div[contains(text(),'Create customer')]")).Click();
+                    Thread.Sleep(2000);
+
+                    //create button
+                    driver.FindElement(By.XPath("//*[@id='root_pagemashupcontainer-69_mashupcontainer-73_navigationTooltip-318-popup_button-22']/button")).Click();
+                    Thread.Sleep(10000);
+
+                    if (Creation_Check(name, Creation_path))
+                        {
+                            test.Log(Status.Pass, name + " - Customer Created");
+                        }
+                    else
+                        {
+                            test.Log(Status.Fail, name + " - Customer Not Created");
+                        }
+                }
+                catch (Exception e)
+                {
+                    test.Log(Status.Fail,name + "- Customer not Created - " + e);
+                }
+            }
+
+            void Edit_Customer(string name, string path, string Modifying_path)
+            {
+                try
+                {
+                    IWebElement element = driver.FindElement(By.XPath(Modifying_path));
+                    test.Log(Status.Info, "Editing Customer - " + element.Text);
+
+                    Thread.Sleep(2000);
+
+                    driver.FindElement(By.XPath("(//table[@class='valuedisplay-wrapper'])[32]")).Click();
+                    
+                    IWebElement Customer_name_field = driver.FindElement(By.XPath("(//input[@class='widget-textbox-box textsize-normal left'])[2]"));
+                    Thread.Sleep(2000);
+                    Customer_name_field.Clear();                    
+                    Customer_name_field.SendKeys(name);
+                    
+                    driver.FindElement(By.XPath("//div[contains(text(),'Edit customer')]")).Click();
+                    Thread.Sleep(2000);
+                    //save button
+                    driver.FindElement(By.XPath("(//button[@class='button-element textsize-large'])[2]")).Click();
+                    Thread.Sleep(2000);
+                    //confirmation
+                    driver.FindElement(By.XPath("//*[@id='confirmButtons']/a[1]")).Click();
+                    Thread.Sleep(2000);
+
+                    if (Creation_Check(name, path))
+                    {
+                        test.Log(Status.Pass, name + " - customer Edited");
+                        Delete_Customer(path,name);
+                    }
+                    else
+                    {
+                        test.Log(Status.Fail, name + " - customer Editing Failed");
+                    }
+                }
+                catch(Exception e)
+                {
+                    test.Log(Status.Fail, name + " - customer Editing Failed " + e);
+                }             
+            }
+            
+            bool Creation_Check(string name, string path)
+            {
+                IWebElement node = driver.FindElement(By.XPath(path));
+                if (name == node.Text)
+                {
+                    return true;
+                }
+                else
+                {
+                    return false;
+                }
+            }
+            
+            void Delete_Customer(string path,string name)
+            {
+                try
+                {
+                    test.Log(Status.Info, "Deleting Node" + name);
+                    //clicking the element to be deleted
+                    driver.FindElement(By.XPath("(//td[@class='valuedisplay-text'])[14]")).Click();
+
+                    //delete Button
+                    driver.FindElement(By.XPath("//*[@id='root_pagemashupcontainer-69_mashupcontainer-73_button-180']/button")).Click();
+                    Thread.Sleep(2000);
+                    driver.FindElement(By.XPath("//*[@id='confirmButtons']/a[1]")).Click();
+                    test.Log(Status.Pass, name + " - Customer Deleted");                    
+                }
+                catch(Exception e)
+                {
+                    test.Log(Status.Fail, name + " - Deleting Customer Failed " + e);
+                }
+            }
+
+            void Delete_node(string path)
+            {
+                try
+                {
+                    string name = driver.FindElement(By.XPath(path)).Text;
+                    test.Log(Status.Info, "deleting Node - " + name);
+
+                    driver.FindElement(By.XPath(path)).Click();
+
+                    driver.FindElement(By.XPath(EditNode_button)).Click();
+                    //Delete Icon
+                    driver.FindElement(By.XPath("(//button[@class='button-element textsize-large'])[1]")).Click();
+                    Thread.Sleep(2000);
+                    //confirmation 
+                    driver.FindElement(By.XPath("//*[@id='confirmButtons']/a[1]")).Click();
+                    test.Log(Status.Pass, name + " - node Deleted");                  
+                }
+                catch (Exception e)
+                {
+                    test.Log(Status.Fail,  "Deleting node Failed - " + e);
+                }
+            }
+
+
+             Default_parameters();
+
+            //Parent Node
+            Create_Node(Inital_name, Inital_node_path);
+
+            //Edit Parent Node
+            Edit_node(Edited_name, Edited_node_path, Inital_node_path);
+
+            //To create Multiple Nested Node
+            Nested_node();
+
+            //NestedNode Editing
+            Edit_node("NestedNode(Edited)",Edited_NestedNode_path, "//span[contains(text(),'NestedNode0')]");
+
+            //Customer at parentNode
+            Create_Customer("Automation tester", Edited_node_path, "//div[contains(text(),'Automation tester')]");
+
+            //Edit Parent Customer name
+            Edit_Customer("Automation tester(Edited)", "//div[contains(text(),'Automation tester(Edited)')]", "//div[contains(text(),'Automation tester')]");
+
+            //Customer at NestedNode
+            Create_Customer("Automation Tester(Nested)", Edited_NestedNode_path, "//div[contains(text(),'Automation Tester(Nested)')]");
+
+            //Edit Nested Customer name
+            Edit_Customer("Automation Tester(Nested)(Edited)", "//div[contains(text(),'Automation Tester(Nested)(Edited)')]", "//div[contains(text(),'Automation Tester(Nested)')]");
+               
+
+            //Delete Nested node
+             Delete_node(Edited_NestedNode_path);
+
+            //Delete Parent Node
+            Delete_node(Edited_node_path);
+            
         }
 
         //Check(test, driver, , "", "not found");
         //Element_check(test, driver,,""," not found");
-       
+
     }
 }

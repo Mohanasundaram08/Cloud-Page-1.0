@@ -176,3 +176,4 @@ C:\Users\Rainbow\source\repos\ConsoleApp1\ConsoleApp1\obj\Debug\TEST.csproj.Core
 C:\Users\Rainbow\source\repos\ConsoleApp1\ConsoleApp1\obj\Debug\TEST.csproj.CopyComplete
 C:\Users\Rainbow\source\repos\ConsoleApp1\ConsoleApp1\obj\Debug\ConsoleApp1.dll
 C:\Users\Rainbow\source\repos\ConsoleApp1\ConsoleApp1\obj\Debug\ConsoleApp1.pdb
+C:\Users\Rainbow\source\repos\ConsoleApp1\ConsoleApp1\obj\Debug\TEST.csprojAssemblyReference.cache

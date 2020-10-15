@@ -442,6 +442,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Administration_page.cs" />
     <Compile Include="dummy.cs" />
     <Compile Include="setup.cs" />
     <Compile Include="Program.cs" />

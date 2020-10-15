@@ -53,7 +53,7 @@ namespace SetUp
                 action.Perform();
                 if (TextValue == element.Text)
                 {
-                    test.Log(Status.Pass, TextValue + " is present");
+                    test.Log(Status.Pass, TextValue + " Text is present");
                 }
                 else
                 {

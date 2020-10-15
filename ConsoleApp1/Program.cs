@@ -1,18 +1,11 @@
 ﻿using System;
 using System.Linq;
-using System.Security.Cryptography.X509Certificates;
 using System.Threading;
 using AventStack.ExtentReports;
 using AventStack.ExtentReports.Model;
-using AventStack.ExtentReports.Reporter;
 using NUnit.Framework;
 using OpenQA.Selenium;
-using OpenQA.Selenium.Chrome;
-using OpenQA.Selenium.Interactions;
 using SetUp;
-using Demo;
-using System.Reflection.Metadata.Ecma335;
-using Microsoft.CodeAnalysis.CSharp.Syntax;
 
 namespace CloudPages
 {
@@ -650,10 +643,10 @@ namespace CloudPages
         [Test, Order(6)]
         public void UserManagement()
         {
-            test = extent.CreateTest("User Management");
-
             Click(driver, driver.FindElement(By.XPath(UserManagement_path)));
             driver.Manage().Timeouts().ImplicitWait = TimeSpan.FromSeconds(200);
+
+            test = extent.CreateTest("User Management");
 
             //User management Icon
             Element_check(test, driver, "//*[@id='root_pagemashupcontainer-69_mashupcontainer-38_valuedisplay-40']/div/table/tbody/tr/td[2]/img", "User management Icon", "User management Icon not found");
@@ -982,14 +975,6 @@ namespace CloudPages
 
             string Delete_button = "//*[@id='root_pagemashupcontainer-69_mashupcontainer-73_button-180']/button";
             string CreateNode_button = "//*[@id='root_pagemashupcontainer-69_mashupcontainer-73_button-231']/button";
-            
-            string EditNode_button = "(//button[@class='button-element textsize-xlarge'])[4]";
-            string Inital_node_path = "//span[contains(text(),'AutomationTest')]";
-            string Edited_node_path = "//span[contains(text(),'AutomationTest1')]";
-            string Edited_NestedNode_path = "//span[contains(text(),'NestedNode(Edited)')]";
-            string Inital_name = "AutomationTest";
-            string Edited_name = "AutomationTest1";
-            string Confirm_Button = "//*[@id='confirmButtons']/a[1]";
 
             void Default_parameters()
             {
@@ -1026,10 +1011,34 @@ namespace CloudPages
                 //Location/site
                 Check(test, driver, "//*[@id='root_pagemashupcontainer-69_mashupcontainer-73_valuedisplay-147']/div/table/tbody/tr/td/div", "Location/site", "Location/site not found");
             }
+            Default_parameters();
+            
+        }
+
+        [Test,Order(12)]
+        public void Administration_functions()
+        {
+            Thread.Sleep(2000);
+
+            Click(driver, driver.FindElement(By.XPath(Administration_path)));
+            driver.Manage().Timeouts().ImplicitWait = TimeSpan.FromSeconds(200);
+
+            test = extent.CreateTest("Administration Functionality");
+
+            string Delete_button = "//*[@id='root_pagemashupcontainer-69_mashupcontainer-73_button-180']/button";
+            string CreateNode_button = "//*[@id='root_pagemashupcontainer-69_mashupcontainer-73_button-231']/button";
+
+            string EditNode_button = "(//button[@class='button-element textsize-xlarge'])[4]";
+            string Inital_node_path = "//span[contains(text(),'AutomationTest')]";
+            string Edited_node_path = "//span[contains(text(),'AutomationTest1')]";
+            string Edited_NestedNode_path = "//span[contains(text(),'NestedNode(Edited)')]";
+            string Inital_name = "AutomationTest";
+            string Edited_name = "AutomationTest1";
+            string Confirm_Button = "//*[@id='confirmButtons']/a[1]";
 
             void Create_Node(string name, string path)
             {
-                test.Log(Status.Info, "Creating node - "+name);
+                test.Log(Status.Info, "Creating node - " + name);
                 try
                 {
                     Click(driver, driver.FindElement(By.XPath(CreateNode_button)));
@@ -1041,26 +1050,26 @@ namespace CloudPages
                     Thread.Sleep(10000);
                     //create Button
                     driver.FindElement(By.XPath("(//button[@class='button-element textsize-large'])[4]")).Click();
-                       
+
                     Thread.Sleep(10000);
-                        
-                    if (Creation_Check(name,path))
+
+                    if (Creation_Check(name, path))
                     {
-                        test.Log(Status.Pass, name+" - Node Created");
+                        test.Log(Status.Pass, name + " - Node Created");
                     }
                     else
                     {
-                        test.Log(Status.Fail, name+" - Node Not Created");
-                    } 
-                }
-                catch (Exception e )
-                    {
-                        test.Log(Status.Fail, name + " - Node Not Created " + e );
+                        test.Log(Status.Fail, name + " - Node Not Created");
                     }
-                    
+                }
+                catch (Exception e)
+                {
+                    test.Log(Status.Fail, name + " - Node Not Created " + e);
+                }
+
             }
-          
-            void Edit_node(string name ,string path, string Modifying_path)
+
+            void Edit_node(string name, string path, string Modifying_path)
             {
                 IWebElement element = driver.FindElement(By.XPath(Modifying_path));
                 test.Log(Status.Info, "Editing Node - " + element.Text);
@@ -1081,18 +1090,18 @@ namespace CloudPages
                         driver.FindElement(By.XPath(Confirm_Button)).Click();
                         Thread.Sleep(2000);
 
-                        if (Creation_Check(name,path))
+                        if (Creation_Check(name, path))
                         {
-                            test.Log(Status.Pass, name+" - Node Edited");
+                            test.Log(Status.Pass, name + " - Node Edited");
                         }
                         else
                         {
-                            test.Log(Status.Fail, name+" - Node Editing Failed");
-                        } 
+                            test.Log(Status.Fail, name + " - Node Editing Failed");
+                        }
                     }
                     catch (Exception e)
                     {
-                        test.Log(Status.Fail, name + " - Node Editing Failed " +e);
+                        test.Log(Status.Fail, name + " - Node Editing Failed " + e);
                     }
 
                 }
@@ -1101,17 +1110,17 @@ namespace CloudPages
             void Nested_node()
             {
                 driver.FindElement(By.XPath(Edited_node_path)).Click();
-                
-                for (int i = 0; i < 2; i++) 
-                {             
-                    string name = "NestedNode"+i;
-                    
-                    Create_Node(name,"//span[contains(text(),'" +name+ "')]" );
+
+                for (int i = 0; i < 2; i++)
+                {
+                    string name = "NestedNode" + i;
+
+                    Create_Node(name, "//span[contains(text(),'" + name + "')]");
                 }
 
             }
 
-            void Create_Customer(string name ,string path, string Creation_path)
+            void Create_Customer(string name, string path, string Creation_path)
             {
                 try
                 {
@@ -1135,17 +1144,17 @@ namespace CloudPages
                     Thread.Sleep(10000);
 
                     if (Creation_Check(name, Creation_path))
-                        {
-                            test.Log(Status.Pass, name + " - Customer Created");
-                        }
+                    {
+                        test.Log(Status.Pass, name + " - Customer Created");
+                    }
                     else
-                        {
-                            test.Log(Status.Fail, name + " - Customer Not Created");
-                        }
+                    {
+                        test.Log(Status.Fail, name + " - Customer Not Created");
+                    }
                 }
                 catch (Exception e)
                 {
-                    test.Log(Status.Fail,name + "- Customer not Created - " + e);
+                    test.Log(Status.Fail, name + "- Customer not Created - " + e);
                 }
             }
 
@@ -1159,12 +1168,12 @@ namespace CloudPages
                     Thread.Sleep(2000);
 
                     driver.FindElement(By.XPath("(//table[@class='valuedisplay-wrapper'])[32]")).Click();
-                    
+
                     IWebElement Customer_name_field = driver.FindElement(By.XPath("(//input[@class='widget-textbox-box textsize-normal left'])[2]"));
                     Thread.Sleep(2000);
-                    Customer_name_field.Clear();                    
+                    Customer_name_field.Clear();
                     Customer_name_field.SendKeys(name);
-                    
+
                     driver.FindElement(By.XPath("//div[contains(text(),'Edit customer')]")).Click();
                     Thread.Sleep(2000);
                     //save button
@@ -1177,20 +1186,20 @@ namespace CloudPages
                     if (Creation_Check(name, path))
                     {
                         test.Log(Status.Pass, name + " - customer Edited");
-                        Delete_Customer(path,name);
+                        Delete_Customer(path, name);
                     }
                     else
                     {
                         test.Log(Status.Fail, name + " - customer Editing Failed");
                     }
                 }
-                catch(Exception e)
+                catch (Exception e)
                 {
                     test.Log(Status.Fail, name + " - customer Editing Failed " + e);
-                }             
+                }
             }
-               
-            void Delete_Customer(string path,string name)
+
+            void Delete_Customer(string path, string name)
             {
                 try
                 {
@@ -1199,12 +1208,12 @@ namespace CloudPages
                     driver.FindElement(By.XPath("(//td[@class='valuedisplay-text'])[14]")).Click();
 
                     //delete Button
-                    driver.FindElement(By.XPath("//*[@id='root_pagemashupcontainer-69_mashupcontainer-73_button-180']/button")).Click();
+                    driver.FindElement(By.XPath(Delete_button)).Click();
                     Thread.Sleep(2000);
                     driver.FindElement(By.XPath(Confirm_Button)).Click();
-                    test.Log(Status.Pass, name + " - Customer Deleted");                    
+                    test.Log(Status.Pass, name + " - Customer Deleted");
                 }
-                catch(Exception e)
+                catch (Exception e)
                 {
                     test.Log(Status.Fail, name + " - Deleting Customer Failed " + e);
                 }
@@ -1226,11 +1235,11 @@ namespace CloudPages
                     Thread.Sleep(2000);
                     //confirmation 
                     driver.FindElement(By.XPath(Confirm_Button)).Click();
-                    test.Log(Status.Pass, name + " - node Deleted");                  
+                    test.Log(Status.Pass, name + " - node Deleted");
                 }
                 catch (Exception e)
                 {
-                    test.Log(Status.Fail,  "Deleting node Failed - " + e);
+                    test.Log(Status.Fail, "Deleting node Failed - " + e);
                 }
             }
 
@@ -1247,8 +1256,6 @@ namespace CloudPages
                 }
             }
 
-            Default_parameters();
-
             //Parent Node
             Create_Node(Inital_name, Inital_node_path);
 
@@ -1259,7 +1266,7 @@ namespace CloudPages
             Nested_node();
 
             //NestedNode Editing
-            Edit_node("NestedNode(Edited)",Edited_NestedNode_path, "//span[contains(text(),'NestedNode0')]");
+            Edit_node("NestedNode(Edited)", Edited_NestedNode_path, "//span[contains(text(),'NestedNode0')]");
 
             //Customer at parentNode
             Create_Customer("Automation tester", Edited_node_path, "//div[contains(text(),'Automation tester')]");
@@ -1272,13 +1279,12 @@ namespace CloudPages
 
             //Edit Nested Customer name
             Edit_Customer("Automation Tester(Nested)(Edited)", "//div[contains(text(),'Automation Tester(Nested)(Edited)')]", "//div[contains(text(),'Automation Tester(Nested)')]");
-               
+
             //Delete Nested node
-             Delete_node(Edited_NestedNode_path);
+            Delete_node(Edited_NestedNode_path);
 
             //Delete Parent Node
             Delete_node(Edited_node_path);
-            
         }
 
         //Check(test, driver, , "", "not found");

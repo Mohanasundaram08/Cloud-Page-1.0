@@ -21,6 +21,19 @@ namespace SetUp
         public string Email = "vijaykumar.c @esab.co.in";
         public string PassWord = "Vijay2020!";
 
+        //paths
+        public string Reports_path = "//*[@id='root_menu-40']/li[2]/table/tbody/tr/td/a";
+        public string WeldSession_path = "//*[@id='root_menu-40']/li[3]/table/tbody/tr/td/a/span";
+        public string FleetManagement_path = "//*[@id='root_menu-40']/li[4]/table/tbody/tr/td/a/span";
+        public string JobManagement_path = "//*[@id='root_menu-40']/li[5]/table/tbody/tr/td/a/span";
+        public string AssetManagement_path = "//*[@id='root_menu-40']/li[6]/table/tbody/tr/td/a/span";
+        public string UserManagement_path = "//*[@id='root_menu-40']/li[7]/table/tbody/tr/td/a/span";
+        public string ShiftMangement_path = "//*[@id='root_menu-40']/li[8]/table/tbody/tr/td/a/span";
+        public string AlertsAndSubscriptions_path = "//*[@id='root_menu-40']/li[9]/table/tbody/tr/td/a/span";
+        public string ScanningList_path = "//*[@id='root_menu-40']/li[10]/table/tbody/tr/td/a/span";
+        public string LicenceManagement_path = "//*[@id='root_menu-40']/li[11]/table/tbody/tr/td/a/span";
+        public string Administration_path = "//*[@id='root_menu-40']/li[12]/table/tbody/tr/td/a/span";
+
         public static void Click(IWebDriver driver, IWebElement name)
         {
             Actions action = new Actions(driver);
@@ -77,7 +90,7 @@ namespace SetUp
             }
         }
       
-        [SetUp]
+        [OneTimeSetUp]
         public void Driver()
         {
             var htmlReporter = new ExtentHtmlReporter(@"C:\Users\Rainbow\source\repos\ConsoleApp1\ConsoleApp1\repots\report.html");
@@ -110,12 +123,12 @@ namespace SetUp
         //Check(test, driver, , "", "not found");
         //Element_check(test, driver,,""," not found");
 
-        [TearDown]
+        [OneTimeTearDown]
         public void Close()
         {
             extent.Flush();
             
-            //driver.Quit();
+            driver.Quit();
         }
     }
 }

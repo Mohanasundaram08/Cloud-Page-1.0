@@ -93,12 +93,12 @@ namespace CloudPages
 
         [Test, Order(1)]
         public void Reports()
-        {
-            test = extent.CreateTest("Report Page");
+        {        
             //Reports
-            Click(driver, driver.FindElement(By.XPath("//*[@id='root_menu-40']/li[2]/table/tbody/tr/td/a")));
-
+            Click(driver, driver.FindElement(By.XPath(Reports_path)));
             driver.Manage().Timeouts().ImplicitWait = TimeSpan.FromSeconds(200);
+
+            test = extent.CreateTest("Report Page");
 
             string Productivity = "//*[@id='root_pagemashupcontainer-69_tabsv2-250']/div[1]/div[3]/div/div/div[1]/div/div";
             string Actively_Timeline = "//*[@id='root_pagemashupcontainer-69_tabsv2-250']/div[1]/div[3]/div/div/div[3]/div/div";
@@ -235,8 +235,6 @@ namespace CloudPages
         [Test, Order(2)]
         public void WeldSession()
         {
-            test = extent.CreateTest("Weld Session");
-
             string By_weld_station = "//*[@id='root_pagemashupcontainer-69_tabsv2-10']/div[1]/div[3]/div/div/div[1]/div/div";
             string By_operator = "//*[@id='root_pagemashupcontainer-69_tabsv2-10']/div[1]/div[3]/div/div/div[2]/div/div";
             string By_work_order = "//*[@id='root_pagemashupcontainer-69_tabsv2-10']/div[1]/div[3]/div/div/div[3]/div/div";
@@ -250,7 +248,9 @@ namespace CloudPages
             string Filter_button = "//*[@id='root_pagemashupcontainer-69_ptcsbutton-75']";
 
             //click weld session
-            Click(driver, driver.FindElement(By.XPath("//*[@id='root_menu-40']/li[3]/table/tbody/tr/td/a/span")));
+            Click(driver, driver.FindElement(By.XPath(WeldSession_path)));
+
+            test = extent.CreateTest("Weld Session");
 
             void Weld_session_parameters()
             {
@@ -349,7 +349,8 @@ namespace CloudPages
         [Test, Order(3)]
         public void FleetManagement()
         {
-            Click(driver, driver.FindElement(By.XPath("//*[@id='root_menu-40']/li[4]/table/tbody/tr/td/a/span")));
+            Thread.Sleep(2000);
+            Click(driver, driver.FindElement(By.XPath(FleetManagement_path)));
             driver.Manage().Timeouts().ImplicitWait = TimeSpan.FromSeconds(200);
 
             test = extent.CreateTest("Fleet Management");
@@ -385,7 +386,8 @@ namespace CloudPages
                 {
                     driver.FindElement(By.XPath(Events)).Click();
                    
-                    Thread.Sleep(50000);
+
+                    Thread.Sleep(2000);
                     test.Log(Status.Info, "Event Parameters");
                     //Machine name
                     Check(test, driver, "//*[@id='root_pagemashupcontainer-69_mashupcontainer-9_gridadvanced-9-grid-advanced']/div[1]/table/tbody/tr[2]/td[1]/div", "Machine name", "Machine name not found");
@@ -441,6 +443,7 @@ namespace CloudPages
                     driver.FindElement(By.XPath(Software_Upgrade)).Click();
                     driver.Manage().Timeouts().ImplicitWait = TimeSpan.FromSeconds(200);
                     test.Log(Status.Info, "SoftwareUpgrade Parameters");
+                    Thread.Sleep(2000);
                     //Remote upgrade
                     Check(test, driver, Remote_upgrade, "Remote upgrade", "Remote upgrade not found");
                     //Manual upgrade
@@ -558,7 +561,7 @@ namespace CloudPages
         {
           
     /*     test = extent.CreateTest("Job Management");
-           Click(driver, driver.FindElement(By.XPath("//*[@id='root_menu-40']/li[5]/table/tbody/tr/td/a/span")));
+           Click(driver, driver.FindElement(By.XPath(JobManagement_path)));
            
            string currentTab = driver.CurrentWindowHandle;
            Thread.Sleep(100000);
@@ -585,10 +588,11 @@ namespace CloudPages
 
         [Test, Order(5)]
         public void AssetManagement()
-        {
-            test = extent.CreateTest("Asset Management");
-            Click(driver, driver.FindElement(By.XPath("//*[@id='root_menu-40']/li[6]/table/tbody/tr/td/a/span")));
+        {       
+            Click(driver, driver.FindElement(By.XPath(AssetManagement_path)));
             driver.Manage().Timeouts().ImplicitWait = TimeSpan.FromSeconds(200);
+
+            test = extent.CreateTest("Asset Management");
 
             //Asset management Heading
             Check(test, driver, "//*[@id='root_pagemashupcontainer-69_mashupcontainer-38_valuedisplay-36']/div/table/tbody/tr/td/div", "Asset management", "Asset management heading not found");
@@ -648,7 +652,7 @@ namespace CloudPages
         {
             test = extent.CreateTest("User Management");
 
-            Click(driver, driver.FindElement(By.XPath("//*[@id='root_menu-40']/li[7]/table/tbody/tr/td/a/span")));
+            Click(driver, driver.FindElement(By.XPath(UserManagement_path)));
             driver.Manage().Timeouts().ImplicitWait = TimeSpan.FromSeconds(200);
 
             //User management Icon
@@ -714,12 +718,12 @@ namespace CloudPages
         [Test, Order(7)]
         public void ShiftMangement()
         {
-            test = extent.CreateTest("Shift Management");
-
-            Click(driver, driver.FindElement(By.XPath("//*[@id='root_menu-40']/li[8]/table/tbody/tr/td/a/span")));
+            Click(driver, driver.FindElement(By.XPath(ShiftMangement_path)));
             driver.Manage().Timeouts().ImplicitWait = TimeSpan.FromSeconds(200);
 
-            String NewShift_Button = "//*[@id='root_pagemashupcontainer-69_navigation-231']/button";
+            test = extent.CreateTest("Shift Management");
+
+            string NewShift_Button = "//*[@id='root_pagemashupcontainer-69_navigation-231']/button";
 
             //Shift Management Icon
             Element_check(test, driver, "//*[@id='root_pagemashupcontainer-69_valuedisplay-258']/div/table/tbody/tr/td[2]/img", "Shift Management Icon", "Shift Management Icon not found");
@@ -759,10 +763,10 @@ namespace CloudPages
         [Test, Order(8)]
         public void AlertsAndSubscriptions()
         {
-            test = extent.CreateTest("Alerts And Subscriptions");
-
-            Click(driver, driver.FindElement(By.XPath("//*[@id='root_menu-40']/li[9]/table/tbody/tr/td/a/span")));
+           Click(driver, driver.FindElement(By.XPath("//*[@id='root_menu-40']/li[9]/table/tbody/tr/td/a/span")));
             driver.Manage().Timeouts().ImplicitWait = TimeSpan.FromSeconds(200);
+
+            test = extent.CreateTest("Alerts And Subscriptions");
 
             string New_Alert = "//*[@id='root_pagemashupcontainer-69_tabsv2-187']/div[1]/div[3]/div/div/div[1]/div/div";
             string New_subscription = "//*[@id='root_pagemashupcontainer-69_tabsv2-187']/div[1]/div[3]/div/div/div[2]/div/div";
@@ -911,10 +915,10 @@ namespace CloudPages
         [Test, Order(9)]
         public void ScanningList()
         {
-            test = extent.CreateTest("Scanning List");
-
-            Click(driver, driver.FindElement(By.XPath("//*[@id='root_menu-40']/li[10]/table/tbody/tr/td/a/span")));
+            Click(driver, driver.FindElement(By.XPath(ScanningList_path)));
             driver.Manage().Timeouts().ImplicitWait = TimeSpan.FromSeconds(200);
+
+            test = extent.CreateTest("Scanning List");
 
             //Scanning lists Icon
             Element_check(test, driver, "//*[@id='root_pagemashupcontainer-69_valuedisplay-335']/div/table/tbody/tr/td[2]/img", "Scanning lists Icon", "Scanning lists Icon not found");
@@ -944,7 +948,7 @@ namespace CloudPages
         {
             /* test = extent.CreateTest("Licence Management");
 
-                 Click(driver, driver.FindElement(By.XPath("//*[@id='root_menu-40']/li[11]/table/tbody/tr/td/a/span")));
+                 Click(driver, driver.FindElement(By.XPath(LicenceManagement_path)));
                  driver.Manage().Timeouts().ImplicitWait = TimeSpan.FromSeconds(200);
 
                  //Licence Management Heading
@@ -971,10 +975,10 @@ namespace CloudPages
         {
             Thread.Sleep(2000);
 
-            test = extent.CreateTest("Administration");
-
-            Click(driver, driver.FindElement(By.XPath("//*[@id='root_menu-40']/li[12]/table/tbody/tr/td/a/span")));
+            Click(driver, driver.FindElement(By.XPath(Administration_path)));
             driver.Manage().Timeouts().ImplicitWait = TimeSpan.FromSeconds(200);
+
+            test = extent.CreateTest("Administration");
 
             string Delete_button = "//*[@id='root_pagemashupcontainer-69_mashupcontainer-73_button-180']/button";
             string CreateNode_button = "//*[@id='root_pagemashupcontainer-69_mashupcontainer-73_button-231']/button";
@@ -985,6 +989,7 @@ namespace CloudPages
             string Edited_NestedNode_path = "//span[contains(text(),'NestedNode(Edited)')]";
             string Inital_name = "AutomationTest";
             string Edited_name = "AutomationTest1";
+            string Confirm_Button = "//*[@id='confirmButtons']/a[1]";
 
             void Default_parameters()
             {
@@ -1073,7 +1078,7 @@ namespace CloudPages
                         Thread.Sleep(2000);
                         driver.FindElement(By.XPath("//*[@id='root_pagemashupcontainer-69_mashupcontainer-73_navigationTooltip-221-popup_button-15']/button")).Click();
                         Thread.Sleep(2000);
-                        driver.FindElement(By.XPath("//*[@id='confirmButtons']/a[1]")).Click();
+                        driver.FindElement(By.XPath(Confirm_Button)).Click();
                         Thread.Sleep(2000);
 
                         if (Creation_Check(name,path))
@@ -1166,7 +1171,7 @@ namespace CloudPages
                     driver.FindElement(By.XPath("(//button[@class='button-element textsize-large'])[2]")).Click();
                     Thread.Sleep(2000);
                     //confirmation
-                    driver.FindElement(By.XPath("//*[@id='confirmButtons']/a[1]")).Click();
+                    driver.FindElement(By.XPath(Confirm_Button)).Click();
                     Thread.Sleep(2000);
 
                     if (Creation_Check(name, path))
@@ -1184,20 +1189,7 @@ namespace CloudPages
                     test.Log(Status.Fail, name + " - customer Editing Failed " + e);
                 }             
             }
-            
-            bool Creation_Check(string name, string path)
-            {
-                IWebElement node = driver.FindElement(By.XPath(path));
-                if (name == node.Text)
-                {
-                    return true;
-                }
-                else
-                {
-                    return false;
-                }
-            }
-            
+               
             void Delete_Customer(string path,string name)
             {
                 try
@@ -1209,7 +1201,7 @@ namespace CloudPages
                     //delete Button
                     driver.FindElement(By.XPath("//*[@id='root_pagemashupcontainer-69_mashupcontainer-73_button-180']/button")).Click();
                     Thread.Sleep(2000);
-                    driver.FindElement(By.XPath("//*[@id='confirmButtons']/a[1]")).Click();
+                    driver.FindElement(By.XPath(Confirm_Button)).Click();
                     test.Log(Status.Pass, name + " - Customer Deleted");                    
                 }
                 catch(Exception e)
@@ -1222,6 +1214,7 @@ namespace CloudPages
             {
                 try
                 {
+                    Thread.Sleep(2000);
                     string name = driver.FindElement(By.XPath(path)).Text;
                     test.Log(Status.Info, "deleting Node - " + name);
 
@@ -1232,7 +1225,7 @@ namespace CloudPages
                     driver.FindElement(By.XPath("(//button[@class='button-element textsize-large'])[1]")).Click();
                     Thread.Sleep(2000);
                     //confirmation 
-                    driver.FindElement(By.XPath("//*[@id='confirmButtons']/a[1]")).Click();
+                    driver.FindElement(By.XPath(Confirm_Button)).Click();
                     test.Log(Status.Pass, name + " - node Deleted");                  
                 }
                 catch (Exception e)
@@ -1241,6 +1234,18 @@ namespace CloudPages
                 }
             }
 
+            bool Creation_Check(string name, string path)
+            {
+                IWebElement node = driver.FindElement(By.XPath(path));
+                if (name == node.Text)
+                {
+                    return true;
+                }
+                else
+                {
+                    return false;
+                }
+            }
 
             Default_parameters();
 
@@ -1268,7 +1273,6 @@ namespace CloudPages
             //Edit Nested Customer name
             Edit_Customer("Automation Tester(Nested)(Edited)", "//div[contains(text(),'Automation Tester(Nested)(Edited)')]", "//div[contains(text(),'Automation Tester(Nested)')]");
                
-
             //Delete Nested node
              Delete_node(Edited_NestedNode_path);
 

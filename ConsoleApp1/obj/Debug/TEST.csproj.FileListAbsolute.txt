@@ -1,3 +1,5 @@
+C:\Users\Rainbow\source\repos\ConsoleApp1\ConsoleApp1\bin\Debug\IEDriverServer-license.txt
+C:\Users\Rainbow\source\repos\ConsoleApp1\ConsoleApp1\bin\Debug\IEDriverServer.exe
 C:\Users\Rainbow\source\repos\ConsoleApp1\ConsoleApp1\bin\Debug\mongocrypt.dll
 C:\Users\Rainbow\source\repos\ConsoleApp1\ConsoleApp1\bin\Debug\NUnit3.TestAdapter.dll
 C:\Users\Rainbow\source\repos\ConsoleApp1\ConsoleApp1\bin\Debug\NUnit3.TestAdapter.pdb
@@ -41,6 +43,7 @@ C:\Users\Rainbow\source\repos\ConsoleApp1\ConsoleApp1\bin\Debug\Microsoft.AspNet
 C:\Users\Rainbow\source\repos\ConsoleApp1\ConsoleApp1\bin\Debug\Microsoft.AspNetCore.WebUtilities.dll
 C:\Users\Rainbow\source\repos\ConsoleApp1\ConsoleApp1\bin\Debug\Microsoft.CodeAnalysis.CSharp.dll
 C:\Users\Rainbow\source\repos\ConsoleApp1\ConsoleApp1\bin\Debug\Microsoft.CodeAnalysis.dll
+C:\Users\Rainbow\source\repos\ConsoleApp1\ConsoleApp1\bin\Debug\Microsoft.Edge.SeleniumTools.dll
 C:\Users\Rainbow\source\repos\ConsoleApp1\ConsoleApp1\bin\Debug\Microsoft.Extensions.Configuration.Abstractions.dll
 C:\Users\Rainbow\source\repos\ConsoleApp1\ConsoleApp1\bin\Debug\Microsoft.Extensions.Configuration.Binder.dll
 C:\Users\Rainbow\source\repos\ConsoleApp1\ConsoleApp1\bin\Debug\Microsoft.Extensions.Configuration.CommandLine.dll
@@ -176,4 +179,3 @@ C:\Users\Rainbow\source\repos\ConsoleApp1\ConsoleApp1\obj\Debug\TEST.csproj.Core
 C:\Users\Rainbow\source\repos\ConsoleApp1\ConsoleApp1\obj\Debug\TEST.csproj.CopyComplete
 C:\Users\Rainbow\source\repos\ConsoleApp1\ConsoleApp1\obj\Debug\ConsoleApp1.dll
 C:\Users\Rainbow\source\repos\ConsoleApp1\ConsoleApp1\obj\Debug\ConsoleApp1.pdb
-C:\Users\Rainbow\source\repos\ConsoleApp1\ConsoleApp1\obj\Debug\TEST.csprojAssemblyReference.cache
